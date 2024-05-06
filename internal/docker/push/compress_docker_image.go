@@ -18,7 +18,10 @@ func CompressImageToTarGz() error {
 		return err
 	}
 	if _, err := os.Stat(docker.TarTmpDir); os.IsNotExist(err) {
-		os.Mkdir(docker.TarTmpDir, 0777)
+		err = os.Mkdir(docker.TarTmpDir, 0777)
+		if err != nil {
+			return err
+		}
 	}
 	tarGzFileName := docker.TarTmpDir + "/" + docker.ImageName + ".tar.gz"
 	imageSaveResponse, err := cli.ImageSave(ctx, []string{docker.ImageName})
