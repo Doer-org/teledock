@@ -21,7 +21,7 @@ func CreateImage(dockerFile bool, languageType string, directory string, dockerf
 			return err
 		}
 	} else {
-		err := createImageWithBuildPacks(directory, dockerfilename, languageType)
+		err := createImageWithBuildPacks(directory, languageType)
 		if err != nil {
 			return err
 		}
@@ -66,7 +66,7 @@ func createImageWithDockerFile(directory string, dockerfilename string) error {
 	return nil
 }
 
-func createImageWithBuildPacks(directory string, dockerfilename string, language string) error {
+func createImageWithBuildPacks(directory string, language string) error {
 	builder := responseBuilder(language)
 	cmd := exec.Command("pack", "build", docker.ImageName, "--builder", builder, "--path", directory)
 	cmd.Stdout = os.Stdout
