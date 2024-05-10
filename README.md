@@ -14,6 +14,7 @@ brew install buildpacks/tap/pack
 go install github.com/Doer-org/ketos@latest
 ```
 ## Usage
+### push
 ```
 ketos push -d "./examples/go" -l "go" -f "Dockerfile" -D true -p 8090:8090 -s "http://localhost:8000/"
 directory:  ./examples/go
