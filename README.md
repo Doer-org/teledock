@@ -14,6 +14,26 @@ brew install buildpacks/tap/pack
 go install github.com/Doer-org/ketos@latest
 ```
 ## Usage
+```
+ketos push -d "./examples/go" -l "go" -f "Dockerfile" -D true -p 8090:8090 -s "http://localhost:8000/"
+directory:  ./examples/go
+Creating image with Dockerfile
+Path:  ./examples/go
+Dockerfile:  Dockerfile
+Sending tar to server...
+{"id":"edfbf5b9-e751-46a0-a20f-1b1600748ad5","port":"8090:8090"}
+
+            __ __ ________________  _____
+           / //_// ____/_  __/ __ \/ ___/
+          / ,<  / __/   / / / / / /\__ \
+         / /| |/ /___  / / / /_/ /___/ /
+        /_/ |_/_____/ /_/  \____//____/
+
+🐳🐳🐳 Share this command 🐳🐳🐳
+
+ketos pull -i edfbf5b9-e751-46a0-a20f-1b1600748ad5
+```
+
 
 ## LICENSE
 Code licensed under 
