@@ -11,7 +11,7 @@ When you want to share your web apps with others, you can either upload the dock
 ## Install
 ```
 brew install buildpacks/tap/pack
-make install
+go install github.com/Doer-org/ketos@latest
 ```
 ## Usage
 
