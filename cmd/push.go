@@ -61,7 +61,7 @@ var pushCmd = &cobra.Command{
 		if err != nil {
 			return err
 		}
-		err = api.SendTarToServer(publishList, envList)
+		err = api.SendTarToServer(host, publishList, envList)
 		if err != nil {
 			return err
 		}
