@@ -16,3 +16,5 @@ go install github.com/Doer-org/ketos@latest
 ## Usage
 
 ## LICENSE
+Code licensed under 
+[the MIT License](https://github.comDoer-org/ketos/blob/main/LICENSE).
