@@ -39,10 +39,9 @@ func StopAndRemoveContainer(containerName string) error {
 			fmt.Printf("Container %s has been stopped and removed.\n", containerName)
 			break
 		}
-	}	
+	}
 	return nil
 }
-
 
 func CreateContainer(port string) (string, error) {
 	ctx := context.Background()
@@ -85,6 +84,6 @@ func CreateContainer(port string) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	fmt.Printf("Container %s has been created with ID: %s\n", docker.ContainerName,resp.ID)
+	fmt.Printf("Container %s has been created with ID: %s\n", docker.ContainerName, resp.ID)
 	return resp.ID, nil
 }
