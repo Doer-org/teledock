@@ -14,7 +14,11 @@ import (
 	"github.com/Doer-org/ketos/internal"
 )
 
-func SendTarToServer(publishList []string, envList []string) error {
+func SendTarToServer(host string, publishList []string, envList []string) error {
+	if host == "" {
+		host = BackendURL
+	}
+
 	file, err := os.Open(filePath)
 	if err != nil {
 		return err
@@ -38,7 +42,7 @@ func SendTarToServer(publishList []string, envList []string) error {
 		portsString = "none"
 	}
 
-	fullURL := fmt.Sprintf("%s?port=%s", BackendURL, portsString)
+	fullURL := fmt.Sprintf("%s?port=%s", host, portsString)
 	request, err := http.NewRequest("POST", fullURL, body)
 	if err != nil {
 		return err
@@ -51,7 +55,7 @@ func SendTarToServer(publishList []string, envList []string) error {
 		return err
 	}
 	defer response.Body.Close()
-	
+
 	var responseBody bytes.Buffer
 	_, err = io.Copy(&responseBody, response.Body)
 	if err != nil {
