@@ -14,6 +14,42 @@ brew install buildpacks/tap/pack
 go install github.com/Doer-org/ketos@latest
 ```
 ## Usage
+### push
+```
+ketos push -d "./examples/go" -l "go" -f "Dockerfile" -D true -p 8090:8090 -s "http://localhost:8000/"
+directory:  ./examples/go
+Creating image with Dockerfile
+Path:  ./examples/go
+Dockerfile:  Dockerfile
+Sending tar to server...
+{"id":"6ce1da4c-b7be-4c02-b262-88cd6350e025","port":"8090:8090"}
+
+            __ __ ________________  _____
+           / //_// ____/_  __/ __ \/ ___/
+          / ,<  / __/   / / / / / /\__ \
+         / /| |/ /___  / / / /_/ /___/ /
+        /_/ |_/_____/ /_/  \____//____/
+
+🐳🐳🐳 Share this command 🐳🐳🐳
+
+ketos pull -i 6ce1da4c-b7be-4c02-b262-88cd6350e025
+```
+
+### pull
+```
+ketos pull -i 6ce1da4c-b7be-4c02-b262-88cd6350e025 -s "http://localhost:8000"
+http://localhost:8000/info/6ce1da4c-b7be-4c02-b262-88cd6350e025
+{"id":"6ce1da4c-b7be-4c02-b262-88cd6350e025","port":"8090:8090"}
+https://ketos.doer-app.com/info/6ce1da4c-b7be-4c02-b262-88cd6350e025
+Container ketos-tmp-container has been created with ID: ce98e6ba0f24a82ac2ec09ee34f90a151682c5d2707c0fe9b4bdea958e0a6975
+Container ketos-tmp-container has been started
+
+            __ __ ________________  _____
+           / //_// ____/_  __/ __ \/ ___/
+          / ,<  / __/   / / / / / /\__ \
+         / /| |/ /___  / / / /_/ /___/ /
+        /_/ |_/_____/ /_/  \____//____/
+```
 
 ## LICENSE
 Code licensed under 
