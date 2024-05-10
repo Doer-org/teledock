@@ -15,6 +15,7 @@ import (
 )
 
 func SendTarToServer(host string, publishList []string, envList []string) error {
+	fmt.Println("Sending tar to server...")
 	if host == "" {
 		host = BackendURL
 	}

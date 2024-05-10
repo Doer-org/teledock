@@ -22,7 +22,7 @@ var pullCmd = &cobra.Command{
 		if err != nil {
 			return err
 		}
-		host, err := cmd.Flags().GetString("host")
+		host, err := cmd.Flags().GetString("selfhostPath")
 		if err != nil {
 			return err
 		}
@@ -52,7 +52,7 @@ var pullCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(pullCmd)
 	pullCmd.Flags().StringP("id", "i", "", "ketos docker image id")
-	pushCmd.Flags().StringP("host", "h", "", "URL of the server to use")
+	pullCmd.Flags().StringP("selfhostPath", "s", "", "URL of the server to use")
 
 	// Here you will define your flags and configuration settings.
 

@@ -3,7 +3,6 @@ package docker
 import (
 	"context"
 	"fmt"
-	"io"
 	"os"
 	"os/exec"
 
@@ -59,10 +58,6 @@ func createImageWithDockerFile(directory string, dockerfilename string) error {
 	}
 
 	defer imageBuildResponse.Body.Close()
-	_, err = io.Copy(os.Stdout, imageBuildResponse.Body)
-	if err != nil {
-		return err
-	}
 	return nil
 }
 

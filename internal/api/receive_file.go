@@ -14,8 +14,12 @@ type Response struct {
 	ID   string `json:"id"`
 }
 
-func GetServerInfo(id string) (string, error) {
-	fullURL := fmt.Sprintf("%s/info/%s", BackendURL, id)
+func GetServerInfo(host string, id string) (string, error) {
+	if host == "" {
+		host = BackendURL
+	}
+	fullURL := fmt.Sprintf("%s/info/%s", host, id)
+	fmt.Println(fullURL)
 	response, err := http.Get(fullURL)
 	if err != nil {
 		return "", err
@@ -27,6 +31,7 @@ func GetServerInfo(id string) (string, error) {
 	if err != nil {
 		return "", err
 	}
+	fmt.Println(responseBody.String())
 
 	var resp Response
 	err = json.Unmarshal(responseBody.Bytes(), &resp)
@@ -55,7 +60,7 @@ func ReceiveTarGzFromServer(host string, id string) (string, error) {
 	}
 	defer infoResponse.Body.Close()
 
-	port, err := GetServerInfo(id)
+	port, err := GetServerInfo(host, id)
 	if err != nil {
 		return "", err
 	}
