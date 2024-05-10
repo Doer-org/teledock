@@ -35,6 +35,10 @@ var pushCmd = &cobra.Command{
 		if err != nil {
 			return err
 		}
+		host, err := cmd.Flags().GetString("host")
+		if err != nil {
+			return err
+		}
 		dockerfile, err := cmd.Flags().GetBool("dockerfile")
 		if err != nil {
 			return err
@@ -57,7 +61,7 @@ var pushCmd = &cobra.Command{
 		if err != nil {
 			return err
 		}
-		err = api.SendTarToServer(publishList, envList)
+		err = api.SendTarToServer(host, publishList, envList)
 		if err != nil {
 			return err
 		}
@@ -70,6 +74,7 @@ func init() {
 	pushCmd.Flags().StringP("directory", "d", "", "Directory path to create docker image")
 	pushCmd.Flags().StringP("language", "l", "", "Language type to create docker image")
 	pushCmd.Flags().StringP("filename", "f", "", "Dockerfile name to create docker image")
+	pushCmd.Flags().StringP("host", "h", "", "URL of the server to use")
 	pushCmd.Flags().BoolP("dockerfile", "D", false, "Dockerfile or buildpacks")
 	pushCmd.Flags().StringSliceP("publish", "p", []string{}, "Publish a container's port(s) to the host")
 	pushCmd.Flags().StringSliceP("env", "e", []string{}, "Set environment variable(s)")

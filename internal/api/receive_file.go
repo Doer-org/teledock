@@ -10,11 +10,11 @@ import (
 )
 
 type Response struct {
-    Port string `json:"port"`
-	ID string `json:"id"`
+	Port string `json:"port"`
+	ID   string `json:"id"`
 }
 
-func GetServerInfo(id string) (string,error) {
+func GetServerInfo(id string) (string, error) {
 	fullURL := fmt.Sprintf("%s/info/%s", BackendURL, id)
 	response, err := http.Get(fullURL)
 	if err != nil {
@@ -33,19 +33,22 @@ func GetServerInfo(id string) (string,error) {
 	if err != nil {
 		return "", err
 	}
-	fmt.Printf("%s/info/%s\n", FrontURL, id)	
+	fmt.Printf("%s/info/%s\n", FrontURL, id)
 	return resp.Port, nil
 }
 
-func ReceiveTarGzFromServer(id string) (string, error) {
-	fullURL := fmt.Sprintf("%s/%s", BackendURL, id)
+func ReceiveTarGzFromServer(host string, id string) (string, error) {
+	if host == "" {
+		host = BackendURL
+	}
+	fullURL := fmt.Sprintf("%s/%s", host, id)
 	response, err := http.Get(fullURL)
 	if err != nil {
 		return "", err
 	}
 	defer response.Body.Close()
 
-	infoURL := fmt.Sprintf("%s/info/%s", BackendURL, id)
+	infoURL := fmt.Sprintf("%s/info/%s", host, id)
 	infoResponse, err := http.Get(infoURL)
 	if err != nil {
 		return "", err
