@@ -22,8 +22,12 @@ var pullCmd = &cobra.Command{
 		if err != nil {
 			return err
 		}
+		host, err := cmd.Flags().GetString("host")
+		if err != nil {
+			return err
+		}
 
-		port, err := api.ReceiveTarGzFromServer(id)
+		port, err := api.ReceiveTarGzFromServer(host, id)
 		if err != nil {
 			return err
 		}
@@ -48,6 +52,7 @@ var pullCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(pullCmd)
 	pullCmd.Flags().StringP("id", "i", "", "ketos docker image id")
+	pushCmd.Flags().StringP("host", "h", "", "URL of the server to use")
 
 	// Here you will define your flags and configuration settings.
 

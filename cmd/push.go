@@ -74,7 +74,7 @@ func init() {
 	pushCmd.Flags().StringP("directory", "d", "", "Directory path to create docker image")
 	pushCmd.Flags().StringP("language", "l", "", "Language type to create docker image")
 	pushCmd.Flags().StringP("filename", "f", "", "Dockerfile name to create docker image")
-	pushCmd.Flags().StringP("host", "f", "", "URL of the server to use")
+	pushCmd.Flags().StringP("host", "h", "", "URL of the server to use")
 	pushCmd.Flags().BoolP("dockerfile", "D", false, "Dockerfile or buildpacks")
 	pushCmd.Flags().StringSliceP("publish", "p", []string{}, "Publish a container's port(s) to the host")
 	pushCmd.Flags().StringSliceP("env", "e", []string{}, "Set environment variable(s)")
